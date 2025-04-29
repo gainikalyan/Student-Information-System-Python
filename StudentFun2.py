@@ -80,53 +80,53 @@ def up():
     global d
     if len(d) == 0:
         print("No students added. Impossible to update.")
-    else:
-        while True:
-            try:
-                n = int(input("Enter student sno to update: "))
-                if n not in d:
-                    raise NoStudentError
+        return
 
-                # Update name
-                while True:
-                    try:
-                        newname = input("Enter new student name: ")
-                        if len(newname) == 0:
-                            raise ZeroNameLengthError
-                        elif newname.isdigit():
-                            raise InvalidNameError
-                        elif newname.isspace():
-                            raise SpaceError
-                        d[n]["Name"] = newname
-                        break
-                    except ZeroNameLengthError:
-                        print("Enter something.")
-                    except InvalidNameError:
-                        print("Don't enter digits or special symbols.")
-                    except SpaceError:
-                        print("Don't enter only spaces.")
+    while True:
+        try:
+            n = int(input("Enter student sno to update: "))
+            if n not in d:
+                raise NoStudentError
 
-                # Update marks
-                while True:
-                    try:
-                        newmarks = float(input("Enter new student marks: "))
-                        if not (0 <= newmarks <= 100):
-                            raise InvalidMarksError
-                        d[n]["Marks"] = newmarks
-                        break
-                    except ValueError:
-                        print("Don't enter alphabets, symbols, or alphanumerics in marks.")
-                    except InvalidMarksError:
-                        print("Marks must be between 0 and 100.")
+            # Update name
+            while True:
+                try:
+                    newname = input("Enter new student name: ")
+                    if len(newname) == 0:
+                        raise ZeroNameLengthError
+                    elif newname.isdigit():
+                        raise InvalidNameError
+                    elif newname.isspace():
+                        raise SpaceError
+                    d[n]["Name"] = newname
+                    break
+                except ZeroNameLengthError:
+                    print("Enter something.")
+                except InvalidNameError:
+                    print("Don't enter digits or special symbols.")
+                except SpaceError:
+                    print("Don't enter only spaces.")
 
-                print(f"Student Updated Details:\n\tsno: {n}\n\tName: {d[n]['Name']}\n\tMarks: {d[n]['Marks']}")
-                break
+            # Update marks
+            while True:
+                try:
+                    newmarks = float(input("Enter new student marks: "))
+                    if not (0 <= newmarks <= 100):
+                        raise InvalidMarksError
+                    d[n]["Marks"] = newmarks
+                    break
+                except ValueError:
+                    print("Don't enter alphabets, symbols, or alphanumerics in marks.")
+                except InvalidMarksError:
+                    print("Marks must be between 0 and 100.")
 
-            except ValueError:
-                print("Don't enter alphabets, symbols, or alphanumerics.")
-            except NoStudentError:
-                print("Student sno does not exist — try again.")
+            print(f"Student Updated Details:\n\tsno: {n}\n\tName: {d[n]['Name']}\n\tMarks: {d[n]['Marks']}")
+            break
 
+        except ValueError:
+            print("Don't enter alphabets, symbols, or alphanumerics.")
+        except NoStudentError:
+            print("Student sno does not exist — try again.")
 def viewsingle():
     global d,s,sno
     if len(d)==0:
